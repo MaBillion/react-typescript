@@ -4,7 +4,7 @@ import history from '../tools/history';
 
 class Home extends React.Component {
 
-    public onGoBack: () => void = function() {
+    private onGoBack: () => void = function() {
         history.go(-1);
     }
 
