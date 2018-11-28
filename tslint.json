@@ -24,9 +24,16 @@
         false,
         "allow-empty-catch"
     ],
+    "no-console": [
+      false
+    ],
     "no-unnecessary-type-assertion": false,
     "return-undefined": false,
     "no-for-in-array": false,
-    "comment-format": [true, "check-space"]
+    "comment-format": [true, "check-space"],
+    "interface-name" : [true, "never-prefix"],
+    "prefer-const": false,
+    "object-literal-sort-keys": false,
+    "class-name": true
   }
 }

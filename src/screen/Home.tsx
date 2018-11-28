@@ -8,20 +8,21 @@ class Home extends React.Component {
         history.go(-1);
     }
 
-  public render() {
-    return (
-        <div>
-            <NavBar
-                mode="light"
-                icon={<Icon type="left" />}
-                onLeftClick={this.onGoBack}
-                rightContent={[
-                    <Icon key="1" type="ellipsis" />
-                ]}
-            >Home</NavBar>
-      </div>
-    );
-  }
+    public render() {
+        return (
+            <div>
+                <NavBar
+                    mode="dark"
+                    icon={<Icon type="left" />}
+                    onLeftClick={this.onGoBack}
+                    rightContent={<p>
+                        <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_message_2x.png')} alt="message"/>
+                        <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_user_2x.png')} alt="user"/>
+                    </p>}
+                >Home</NavBar>
+        </div>
+        );
+    }
 }
 
 export default Home;
