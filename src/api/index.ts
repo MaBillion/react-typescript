@@ -2,13 +2,13 @@ import 'whatwg-fetch';
 import { Toast } from 'antd-mobile';
 import history from '../tools/history';
 
-interface ApiRules{
+interface ApiRules {
     method?: string,
     api: string,
     body?: object,
     headers?: object,
-    onSuccess: () => void,
-    onErr?: () => void,
+    onSuccess: (res: any) => void,
+    onErr?: (res: any) => void,
     errCodes?: object,
     isCostom?: boolean
 }
