@@ -1,11 +1,18 @@
 import * as React from 'react';
-import { NavBar, Icon } from 'antd-mobile';
+import { NavBar } from 'antd-mobile';
 import history from '../tools/history';
+import { inject, observer } from 'mobx-react';
 
-class Home extends React.Component {
+@inject ('HomeStore')
+@observer
+class Home extends React.Component<any, any> {
+
+    public componentDidMount() {
+        this.props.HomeStore.effectInitInfo()
+    }
 
     private onGoBack: () => void = function() {
-        history.go(-1);
+        history.push('/MessageCenter')
     }
 
     public render() {
@@ -13,12 +20,14 @@ class Home extends React.Component {
             <div>
                 <NavBar
                     mode="dark"
-                    icon={<Icon type="left" />}
+                    leftContent={
+                        <p>
+                            <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_message_2x.png')} alt="message"/>
+                            <i>123</i>
+                        </p>
+                    }
                     onLeftClick={this.onGoBack}
-                    rightContent={<p>
-                        <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_message_2x.png')} alt="message"/>
-                        <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_user_2x.png')} alt="user"/>
-                    </p>}
+                    rightContent={<img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_user_2x.png')} alt="user"/>}
                 >Home</NavBar>
         </div>
         );
