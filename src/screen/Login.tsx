@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { InputItem, Button } from 'antd-mobile';
+import { inject, observer } from 'mobx-react';
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let moneyKeyboardWrapProps:any;
 if (isIPhone) {
@@ -11,16 +12,20 @@ if (isIPhone) {
 }
 
 interface State {
-    type: "number" | "password" | "text" | "bankCard" | "phone" | "digit" | "money",
+    nameType: "number" | "text" | "bankCard" | "phone" | "digit" | "money",
+    pwdType: "password",
     userName: string,
     pwd: string
 }
 
-class Login extends React.Component<{}, State> {
-    constructor(props:any) {
+@inject ('LoginStore')
+@observer
+class Login extends React.Component<any, State> {
+    constructor(props: any) {
         super(props)
         this.state = {
-            type: "money",
+            nameType: "text",
+            pwdType: "password",
             userName: '',
             pwd: ''
         }
@@ -40,27 +45,26 @@ class Login extends React.Component<{}, State> {
 
     private onLogin = () => {
         let { userName, pwd } = this.state
-        console.log(userName)
-        console.log(pwd)
+        this.props.LoginStore.effectLogin({account: userName, pwd})
     }
 
     public render() {
         return (
-        <div className="Login">
-            <InputItem
-                onChange={this.onUserNameChange}
-                type={this.state.type}
-                moneyKeyboardAlign="left"
-                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >账号</InputItem>
-            <InputItem
-                onChange={this.onUserPwdChange}
-                type={this.state.type}
-                moneyKeyboardAlign="left"
-                moneyKeyboardWrapProps={moneyKeyboardWrapProps}
-            >密码</InputItem>
-            <Button type="primary" onClick={this.onLogin}>登录</Button>
-        </div>
+            <div className="Login">
+                <InputItem
+                    onChange={this.onUserNameChange}
+                    type={this.state.nameType}
+                    moneyKeyboardAlign="left"
+                    moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                >账号</InputItem>
+                <InputItem
+                    onChange={this.onUserPwdChange}
+                    type={this.state.pwdType}
+                    moneyKeyboardAlign="left"
+                    moneyKeyboardWrapProps={moneyKeyboardWrapProps}
+                >密码</InputItem>
+                <Button type="primary" onClick={this.onLogin}>登录</Button>
+            </div>
         );
     }
 }
