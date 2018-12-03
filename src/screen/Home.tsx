@@ -16,6 +16,7 @@ class Home extends React.Component<any, any> {
     }
 
     public render() {
+        let { new_msg_count }: { new_msg_count: number } = this.props.HomeStore.initInfo
         return (
             <div>
                 <NavBar
@@ -23,7 +24,11 @@ class Home extends React.Component<any, any> {
                     leftContent={
                         <p>
                             <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_message_2x.png')} alt="message"/>
-                            <i>123</i>
+                            {
+                                new_msg_count > 0 && (
+                                    <i>{new_msg_count}</i>
+                                )
+                            }
                         </p>
                     }
                     onLeftClick={this.onGoBack}

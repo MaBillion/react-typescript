@@ -34,6 +34,7 @@
     "interface-name" : [true, "never-prefix"],
     "prefer-const": false,
     "object-literal-sort-keys": false,
-    "class-name": true
+    "class-name": true,
+    "jsx-no-lambda": false
   }
 }
