@@ -3,9 +3,13 @@ import { NavBar } from 'antd-mobile';
 import history from '../tools/history';
 import { inject, observer } from 'mobx-react';
 
+interface Props {
+    HomeStore: any
+}
+
 @inject ('HomeStore')
 @observer
-class Home extends React.Component<any, any> {
+class Home extends React.Component<Props> {
 
     public componentDidMount() {
         this.props.HomeStore.effectInitInfo()

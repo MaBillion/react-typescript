@@ -6,7 +6,7 @@ class Store {
     @observable protected initInfo:object = Object.create(null)
 
     @action
-    protected getInitInfo(payload: object): void {
+    private getInitInfo(payload: object): void {
         this.initInfo = payload;
     }
 
