@@ -4,7 +4,7 @@ import history from '../tools/history'
 
 class Store {
     @action
-    public effectLogin:(payload: object) => void = function(payload: object) {
+    public effectLogin:(payload: object) => void = (payload: object) => {
         api.post({
             api: '/api/user/login',
             body: payload,

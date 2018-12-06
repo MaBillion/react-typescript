@@ -18,10 +18,14 @@ interface State {
     pwd: string
 }
 
+interface Props {
+    LoginStore: any
+}
+
 @inject ('LoginStore')
 @observer
-class Login extends React.Component<any, State> {
-    constructor(props: any) {
+class Login extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props)
         this.state = {
             nameType: "text",
