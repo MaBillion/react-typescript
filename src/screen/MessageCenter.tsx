@@ -1,11 +1,13 @@
 import * as React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
 
 const Row = styled.li`
     height: 50px;
-    width: 100%;
+    padding: 4px;
+    box-sizing: border-box;
     margin: 10px 2px;
+    box-shadow: 0px 1px 6px #999;
 `
 
 interface State {
