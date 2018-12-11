@@ -5,6 +5,7 @@ import Home from './Home';
 import MessageCenter from './MessageCenter';
 import Login from './Login';
 import PlanList from './PlanList';
+import PlanDetail from './PlanDetail';
 
 export default class extends React.Component{
     public render() {
@@ -15,6 +16,7 @@ export default class extends React.Component{
                 <Route path='/MessageCenter' component={MessageCenter} />
                 <Route path='/Login' component={Login} />
                 <Route path='/PlanList' component={PlanList} />
+                <Route path='/PlanDetail/:id' component={PlanDetail} />
             </div>
         )
     }
