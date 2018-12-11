@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import { Toast } from 'antd-mobile';
-import history from '../tools/history';
+import History from '../tools/History';
 
 interface ApiRules {
     method?: string,
@@ -62,7 +62,7 @@ export default {
             } else {
                 if (err_code === -2) {
                     Toast.info('请先登录')
-                    history.push('/Login')
+                    History.push('/Login')
                 } else if (err_code in defaultData.errCodes) {
                     console.log(err_code)
                     let msg = '请求失败'

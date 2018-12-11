@@ -252,6 +252,13 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+"amap-shapes-generator@git+ssh://git@git.corp.brilliantaero.com/BA/amap-shapes-generator.git":
+  version "0.1.0"
+  resolved "git+ssh://git@git.corp.brilliantaero.com/BA/amap-shapes-generator.git#1c4af982865dc7f776713881ac8e789a16015fd0"
+  dependencies:
+    geodesy "^1.1.2"
+    reselect "^3.0.1"
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -3599,6 +3606,11 @@ gauge@~2.7.3:
     string-width "^1.0.1"
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
+
+geodesy@^1.1.2:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/geodesy/-/geodesy-1.1.3.tgz#a0cbd5db5c0cf8ac045e749f754f61b450382de9"
+  integrity sha512-H/0XSd1KjKZGZ2YGZcOYzRyY/foYAawwTEumNSo+YUwf+u5d4CfvBRg2i2Qimrx9yUEjWR8hLvMnhghuVFN0Zg==
 
 get-caller-file@^1.0.1:
   version "1.0.3"
@@ -7467,6 +7479,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+reselect@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
+  integrity sha1-79qpjqdFEyTQkrKyFjpqHXqaIUc=
 
 resolve-cwd@^2.0.0:
   version "2.0.0"

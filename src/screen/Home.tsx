@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { NavBar, WingBlank, Carousel } from 'antd-mobile';
-import history from '../tools/history';
+import History from '../tools/History';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -49,7 +49,7 @@ class Home extends React.Component<Props, State> {
     }
 
     private onGoBack: () => void = function() {
-        history.push('/MessageCenter')
+        History.push('/MessageCenter')
     }
 
     public render() {
@@ -93,7 +93,7 @@ class Home extends React.Component<Props, State> {
                     </Carousel>
                 </WingBlank>
                 <MainContent>
-                    <Link style={{flex: 1, background: '#ff894b'}} to={'/PlanList'}>计划列表</Link>
+                    <Link style={{flex: 1, background: '#ff894b'}} to={'/PlanList'}>飞行计划</Link>
                     <Link style={{flex: 1, background: '#fff000'}} to={'/'}>aaaa</Link>
                 </MainContent>
             </HomeContent>
