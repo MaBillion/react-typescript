@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import Global from '../tools/Global';
 import { combineAirspaceContent, getFormatTime } from '../tools/BusinessUtil';
-import { toJS } from 'mobx';
+import { Link } from 'react-router-dom';
 
 const Row = styled.li`
     width: 100%;
@@ -59,20 +59,22 @@ class PlanList extends React.Component<Props, State>{
                         planList.map((item: any, index: number) => {
                             return (
                                 <Row key={index}>
-                                    <section style={{height: '24px', lineHeight: '24px'}}>
-                                        <span style={{fontSize: '14px', fontWeight: 700, color: '#666'}}>{item.plan_type}</span>
-                                        <span style={{fontSize: '12px', color: '#58A8F5', float: 'right'}}>{Global.planDetailStatus.get(item.plan_status)}</span>
-                                    </section>
-                                    <section>
-                                        <p>
-                                            <span>作业空域：</span>
-                                            <span>{combineAirspaceContent(toJS(item.airspace_infos), 5).join('、')}</span>
-                                        </p>
-                                        <p>
-                                            <span>时间安排：</span>
-                                            <span>{getFormatTime(item.fly_time)}</span>
-                                        </p>
-                                    </section>
+                                    <Link to={`/PlanDetail/${item.plan_request_id}`}>
+                                        <section style={{height: '24px', lineHeight: '24px'}}>
+                                            <span style={{fontSize: '14px', fontWeight: 700, color: '#666'}}>{item.plan_type}</span>
+                                            <span style={{fontSize: '12px', color: '#58A8F5', float: 'right'}}>{Global.planDetailStatus.get(item.plan_status)}</span>
+                                        </section>
+                                        <section>
+                                            <p>
+                                                <span>作业空域：</span>
+                                                <span>{combineAirspaceContent(item.airspace_infos, 5).join('、')}</span>
+                                            </p>
+                                            <p>
+                                                <span>时间安排：</span>
+                                                <span>{getFormatTime(item.fly_time)}</span>
+                                            </p>
+                                        </section>
+                                    </Link>
                                 </Row>
                             )
                         })
