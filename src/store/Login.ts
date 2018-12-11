@@ -1,6 +1,6 @@
 import { action } from 'mobx';
 import api from '../api/Index';
-import history from '../tools/history'
+import History from '../tools/History'
 
 class Store {
     @action
@@ -9,7 +9,7 @@ class Store {
             api: '/api/user/login',
             body: payload,
             onSuccess: (res: any) => {
-                history.push('/Home')
+                History.push('/Home')
             }
         })
     }
