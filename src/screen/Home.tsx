@@ -4,6 +4,7 @@ import History from '../tools/History';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import common from '../tools/Common'
 
 const MainContent = styled.main`
     flex: 1;
@@ -52,6 +53,11 @@ class Home extends React.Component<Props, State> {
         History.push('/MessageCenter')
     }
 
+    private onLogOut: () => void =function() {
+        common.clearCookie()
+        History.push('/Login')
+    }
+
     public render() {
         let { new_msg_count }: { new_msg_count: number } = this.props.HomeStore.initInfo
         return (
@@ -94,7 +100,7 @@ class Home extends React.Component<Props, State> {
                 </WingBlank>
                 <MainContent>
                     <Link style={{flex: 1, background: '#ff894b'}} to={'/PlanList'}>飞行计划</Link>
-                    <Link style={{flex: 1, background: '#fff000'}} to={'/'}>aaaa</Link>
+                    <section style={{flex: 1, background: '#fff000'}} onClick={this.onLogOut}>退出登录</section>
                 </MainContent>
             </HomeContent>
         );
