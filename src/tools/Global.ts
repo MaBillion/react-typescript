@@ -38,4 +38,6 @@ export default class Global {
         [2, 'line'],
         [3, 'polygon']
     ]);
+
+    public static domain = '.skyreq.com'
 }
