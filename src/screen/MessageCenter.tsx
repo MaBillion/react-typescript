@@ -1,13 +1,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { inject, observer } from 'mobx-react';
+import BaseScreen from '../Component/BaseScreen';
+import Container from '../Component/Container';
+import History from '../tools/History';
 
 const Row = styled.li`
-    height: 50px;
-    padding: 4px;
+    min-height: 80px;
+    padding: 8px 4px;
     box-sizing: border-box;
     margin: 10px 2px;
     box-shadow: 0px 1px 6px #999;
+    line-height: 28px;
 `
 
 interface State {
@@ -16,12 +20,15 @@ interface State {
 }
 
 interface Props {
-    MessageCenterStore: any
+    MessageCenterStore: {
+        effectUserMessageList: (payload: object) => void,
+        messageList: object[]
+    }
 }
 
 @inject ('MessageCenterStore')
 @observer
-class MessageCenter extends React.Component<Props, State> {
+class MessageCenter extends BaseScreen<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
@@ -38,19 +45,30 @@ class MessageCenter extends React.Component<Props, State> {
         const { messageList }: { messageList: object[] } = this.props.MessageCenterStore
         const messageListDom = messageList.map((item: any, index: number) => {
             return (
-                <Row key={index}>{item.content}</Row>
+                <Row key={index}>
+                    <p>
+                        <span style={{fontSize: '14px', fontWeight: 700, color: '#333'}}>{item.title}</span>
+                        <span style={{float: 'right', fontSize: '12px', color: '#666'}}>{item.time}</span>
+                    </p>
+                    <p style={{fontSize: '13px'}}>{item.content}</p>
+                    <p style={{fontSize: '13px', color: '#58A8F5'}}>{item.company_name}</p>
+                </Row>
             );
         })
         return messageListDom
     }
 
+    private onGoBack:() => void = () => {
+        History.go(-1)
+    }
+
     public render() {
         return (
-            <div className="MessageCenter">
+            <Container title={'消息中心'} onChildrenGoBack={this.onGoBack}>
                 <ul>
                     {this.onGetMessageList()}
                 </ul>
-            </div>
+            </Container>
         );
     }
 }
