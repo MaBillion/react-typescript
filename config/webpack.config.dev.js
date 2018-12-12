@@ -72,8 +72,8 @@ module.exports = {
                 test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
                 loader: require.resolve('url-loader'),
                 options: {
-                limit: 10000,
-                name: 'static/media/[name].[hash:8].[ext]',
+                    limit: 10000,
+                    name: 'static/media/[name].[hash:8].[ext]',
                 },
             },
             {
@@ -82,7 +82,7 @@ module.exports = {
                 loader: require.resolve('babel-loader'),
                 options: {
                 
-                compact: true,
+                    compact: true,
                 },
             },
 
@@ -94,7 +94,7 @@ module.exports = {
                 {
                     loader: require.resolve('ts-loader'),
                     options: {
-                    transpileOnly: true,
+                        transpileOnly: true,
                     },
                 },
                 ],
@@ -106,7 +106,7 @@ module.exports = {
                 {
                     loader: require.resolve('css-loader'),
                     options: {
-                    importLoaders: 1,
+                        importLoaders: 1,
                     },
                 },
                 {
