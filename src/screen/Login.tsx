@@ -19,7 +19,9 @@ interface State {
 }
 
 interface Props {
-    LoginStore: any
+    LoginStore: {
+        effectLogin: (payload: {account: string, pwd: string}) => void
+    }
 }
 
 @inject ('LoginStore')

@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { NavBar, WingBlank, Carousel } from 'antd-mobile';
+import { WingBlank, Carousel } from 'antd-mobile';
 import History from '../tools/History';
 import { inject, observer } from 'mobx-react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import common from '../tools/Common'
+import Common from '../tools/Common';
+import BaseScreen from '../Component/BaseScreen';
+import Container from '../Component/Container';
 
 const MainContent = styled.main`
     flex: 1;
@@ -20,7 +22,12 @@ const HomeContent = styled.main`
 `
 
 interface Props {
-    HomeStore: any
+    HomeStore: {
+        effectInitInfo: () => void,
+        initInfo: {
+            new_msg_count: number
+        }
+    }
 }
 
 interface State {
@@ -30,7 +37,7 @@ interface State {
 
 @inject ('HomeStore')
 @observer
-class Home extends React.Component<Props, State> {
+class Home extends BaseScreen<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = {
@@ -49,60 +56,45 @@ class Home extends React.Component<Props, State> {
         this.props.HomeStore.effectInitInfo()
     }
 
-    private onGoBack: () => void = function() {
-        History.push('/MessageCenter')
+    private onLogOut: () => void = () => {
+        Common.clearCookie()
+        History.push('/Login')
     }
 
-    private onLogOut: () => void =function() {
-        common.clearCookie()
-        History.push('/Login')
+    private onPushMessageCenter: () => void = () => {
+        History.push('/MessageCenter')
     }
 
     public render() {
         let { new_msg_count }: { new_msg_count: number } = this.props.HomeStore.initInfo
         return (
-            <HomeContent>
-                <NavBar
-                    mode="dark"
-                    leftContent={
-                        <p>
-                            <img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_message_2x.png')} alt="message"/>
-                            {
-                                new_msg_count > 0 && (
-                                    <i>{new_msg_count}</i>
-                                )
-                            }
-                        </p>
-                    }
-                    onLeftClick={this.onGoBack}
-                    rightContent={<img style={{height: '30px', width: '30px'}} src={require('../assets/images/BA_home_user_2x.png')} alt="user"/>}
-                >Home</NavBar>
-                <WingBlank style={{margin: 0, padding: 0}}>
-                    <Carousel
-                        autoplay={true}
-                        infinite={true}
-                        beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
-                        afterChange={index => console.log('slide to', index)}
-                        >
-                        {this.state.CarouselDate.map((val: any, index: number) => ( 
-                            <img
-                                src={val.imgSrc}
-                                alt={val.alt}
-                                key={index}
-                                style={{ width: '100%', verticalAlign: 'top' }}
-                                onLoad={() => {
-                                    window.dispatchEvent(new Event('resize'));
-                                    this.setState({ imgHeight: 'auto' });
-                                }}
-                            />
-                        ))}
-                    </Carousel>
-                </WingBlank>
-                <MainContent>
-                    <Link style={{flex: 1, background: '#ff894b'}} to={'/PlanList'}>飞行计划</Link>
-                    <section style={{flex: 1, background: '#fff000'}} onClick={this.onLogOut}>退出登录</section>
-                </MainContent>
-            </HomeContent>
+            <Container new_msg_count={new_msg_count} title={'酷飞'} home={true} onHomeEvent={this.onPushMessageCenter}>
+                <HomeContent>
+                    <WingBlank style={{margin: 0, padding: 0}}>
+                        <Carousel
+                            autoplay={true}
+                            infinite={true}
+                            >
+                            {this.state.CarouselDate.map((val: any, index: number) => ( 
+                                <img
+                                    src={val.imgSrc}
+                                    alt={val.alt}
+                                    key={index}
+                                    style={{ width: '100%', verticalAlign: 'top' }}
+                                    onLoad={() => {
+                                        window.dispatchEvent(new Event('resize'));
+                                        this.setState({ imgHeight: 'auto' });
+                                    }}
+                                />
+                            ))}
+                        </Carousel>
+                    </WingBlank>
+                    <MainContent>
+                        <Link style={{flex: 1, background: '#ff894b'}} to={'/PlanList'}>飞行计划</Link>
+                        <section style={{flex: 1, background: '#fff000'}} onClick={this.onLogOut}>退出登录</section>
+                    </MainContent>
+                </HomeContent>
+            </Container>
         );
     }
 }
