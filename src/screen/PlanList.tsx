@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import BaseScreen from '../Component/BaseScreen';
 import Container from '../Component/Container';
 import History from '../tools/History';
+import { PlanListPayloadType, PlanListType } from '../store/PlanList';
 
 const Row = styled.li`
     width: 100%;
@@ -19,39 +20,24 @@ const Row = styled.li`
 
 interface Props {
     PlanListStore: {
-        effectPlanList: (payload: object) => void,
-        planList: object[]
-    }
-}
-
-interface State {
-    planListParam: {
-        offset: number,
-        limit: number,
-        plan_start_time?: string,
-        plan_end_time?: string,
-        plan_type?: number,
-        status?: number,
-        company_id?: number,
-        all?: boolean
+        effectPlanList: (payload: PlanListPayloadType) => void,
+        planList: PlanListType[]
     }
 }
 
 @inject('PlanListStore')
 @observer
-class PlanList extends BaseScreen<Props, State>{
+class PlanList extends BaseScreen<Props, PlanListPayloadType>{
     constructor(props: Props) {
         super(props)
         this.state = {
-            planListParam: {
-                offset: 0,
-                limit: 20
-            }
+            offset: 0,
+            limit: 20
         }
     }
 
     public componentDidMount() {
-        this.props.PlanListStore.effectPlanList(this.state.planListParam)
+        this.props.PlanListStore.effectPlanList(this.state)
     }
 
     private onGoBack:() => void = () => {
@@ -59,12 +45,12 @@ class PlanList extends BaseScreen<Props, State>{
     }
 
     public render() {
-        let { planList }: { planList: object[] } = this.props.PlanListStore
+        let { planList }: { planList: PlanListType[] } = this.props.PlanListStore
         return (
             <Container title={'计划列表'} onChildrenGoBack={this.onGoBack}>
                 <ul>
                     {
-                        planList.map((item: any, index: number) => {
+                        planList.map((item: PlanListType, index: number) => {
                             return (
                                 <Row key={index}>
                                     <Link to={`/PlanDetail/${item.plan_request_id}`}>

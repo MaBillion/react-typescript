@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import BaseScreen from '../Component/BaseScreen';
 import Container from '../Component/Container';
 import History from '../tools/History';
+import { MessageListType } from '../store/MessageCenter';
 
 const Row = styled.li`
     min-height: 80px;
@@ -21,8 +22,8 @@ interface State {
 
 interface Props {
     MessageCenterStore: {
-        effectUserMessageList: (payload: object) => void,
-        messageList: object[]
+        effectUserMessageList: (payload: State) => void,
+        messageList: MessageListType[]
     }
 }
 
@@ -42,8 +43,8 @@ class MessageCenter extends BaseScreen<Props, State> {
     }
 
     private onGetMessageList:() => any = () => {
-        const { messageList }: { messageList: object[] } = this.props.MessageCenterStore
-        const messageListDom = messageList.map((item: any, index: number) => {
+        const { messageList }: { messageList: MessageListType[] } = this.props.MessageCenterStore
+        const messageListDom = messageList.map((item: MessageListType, index: number) => {
             return (
                 <Row key={index}>
                     <p>

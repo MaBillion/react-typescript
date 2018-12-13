@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { InputItem, Button } from 'antd-mobile';
 import { inject, observer } from 'mobx-react';
-const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+import { LoginPayloadType } from '../store/Login';
+import { isIPhone } from '../tools/BusinessUtil';
 let moneyKeyboardWrapProps:any;
 if (isIPhone) {
-  moneyKeyboardWrapProps = {
-    onTouchStart: (e: any) => {
-        e.preventDefault()
-    }
-  };
+    moneyKeyboardWrapProps = {
+        onTouchStart: (e: Event) => {
+            e.preventDefault()
+        }
+    };
 }
 
 interface State {
@@ -20,7 +21,7 @@ interface State {
 
 interface Props {
     LoginStore: {
-        effectLogin: (payload: {account: string, pwd: string}) => void
+        effectLogin: (payload: LoginPayloadType) => void
     }
 }
 
@@ -37,13 +38,13 @@ class Login extends React.Component<Props, State> {
         }
     }
 
-    private onUserNameChange = (value:string) => {
+    private onUserNameChange = (value: string) => {
         this.setState({
             userName: value
         })
     }
 
-    private onUserPwdChange = (value:string) => {
+    private onUserPwdChange = (value: string) => {
         this.setState({
             pwd: value
         })
