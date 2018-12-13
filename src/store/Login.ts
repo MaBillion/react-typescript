@@ -2,9 +2,14 @@ import { action } from 'mobx';
 import api from '../api/Index';
 import History from '../tools/History'
 
+export interface LoginPayloadType {
+    account: string,
+    pwd: string
+}
+
 class Store {
     @action
-    public effectLogin:(payload: object) => void = (payload: object) => {
+    public effectLogin(payload: LoginPayloadType): void{
         api.post({
             api: '/api/user/login',
             body: payload,

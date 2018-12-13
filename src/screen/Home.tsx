@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Common from '../tools/Common';
 import BaseScreen from '../Component/BaseScreen';
 import Container from '../Component/Container';
+import { InitType } from '../store/Home';
 
 const MainContent = styled.main`
     flex: 1;
@@ -24,9 +25,7 @@ const HomeContent = styled.main`
 interface Props {
     HomeStore: {
         effectInitInfo: () => void,
-        initInfo: {
-            new_msg_count: number
-        }
+        initInfo: InitType
     }
 }
 
