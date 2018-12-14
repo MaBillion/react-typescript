@@ -39,5 +39,11 @@ export default class Global {
         [3, 'polygon']
     ]);
 
+    public static flyRules = new Map([
+        [1, '目视飞行'],
+        [2, '仪表飞行'],
+        [3, '目视或仪表飞行']
+    ]);
+
     public static domain = '.skyreq.com'
 }

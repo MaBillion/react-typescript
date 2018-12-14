@@ -54,11 +54,11 @@ class PlanList extends BaseScreen<Props, PlanListPayloadType>{
                             return (
                                 <Row key={index}>
                                     <Link to={`/PlanDetail/${item.plan_request_id}`}>
-                                        <section style={{height: '24px', lineHeight: '24px'}}>
-                                            <span style={{fontSize: '14px', fontWeight: 700, color: '#666'}}>{item.plan_type}</span>
-                                            <span style={{fontSize: '12px', color: '#58A8F5', float: 'right'}}>{Global.planDetailStatus.get(item.plan_status)}</span>
+                                        <section style={{height: '2rem', lineHeight: '2rem'}}>
+                                            <span style={{fontSize: '0.85rem', fontWeight: 700, color: '#666'}}>{item.plan_type}</span>
+                                            <span style={{fontSize: '0.65rem', color: '#58A8F5', float: 'right'}}>{Global.planDetailStatus.get(item.plan_status)}</span>
                                         </section>
-                                        <section style={{lineHeight: '24px', fontSize: '13px'}}>
+                                        <section style={{lineHeight: '1.4rem', fontSize: '0.75rem'}}>
                                             <p>
                                                 <span>作业空域：</span>
                                                 <span>{combineAirspaceContent(item.airspace_infos, 5).join('、')}</span>
