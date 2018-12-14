@@ -12,7 +12,7 @@ const Row = styled.li`
     box-sizing: border-box;
     margin: 10px 2px;
     box-shadow: 0px 1px 6px #999;
-    line-height: 28px;
+    line-height: 1.5rem;
 `
 
 interface State {
@@ -48,11 +48,11 @@ class MessageCenter extends BaseScreen<Props, State> {
             return (
                 <Row key={index}>
                     <p>
-                        <span style={{fontSize: '14px', fontWeight: 700, color: '#333'}}>{item.title}</span>
-                        <span style={{float: 'right', fontSize: '12px', color: '#666'}}>{item.time}</span>
+                        <span style={{fontSize: '0.8rem', fontWeight: 700, color: '#333'}}>{item.title}</span>
+                        <span style={{float: 'right', fontSize: '0.7rem', color: '#666'}}>{item.time}</span>
                     </p>
-                    <p style={{fontSize: '13px'}}>{item.content}</p>
-                    <p style={{fontSize: '13px', color: '#58A8F5'}}>{item.company_name}</p>
+                    <p style={{fontSize: '0.7rem'}}>{item.content}</p>
+                    <p style={{fontSize: '0.7rem', color: '#58A8F5'}}>{item.company_name}</p>
                 </Row>
             );
         })
