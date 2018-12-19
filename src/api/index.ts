@@ -29,22 +29,22 @@ export default {
                 errCodes: {},
                 isCostom: false
         }
-        defaultData = Object.assign({}, defaultData, dataItem);
+        let dataInfo = Object.assign({}, defaultData, dataItem);
 
         let params:string = ''
-        if (defaultData.isCostom) {
-            param = defaultData.body
+        if (dataInfo.isCostom) {
+            param = dataInfo.body
         } else {
             param = {
-                b: defaultData.body,
+                b: dataInfo.body,
                 c: {}
             }
-            console.log('Request URL:' + defaultData.api, defaultData.method, param)
+            console.log('Request URL:' + dataInfo.api, dataInfo.method, param)
             params = JSON.stringify(param)
         }
-        fetch(defaultData.api, {
-                method: defaultData.method,
-                headers: defaultData.headers,
+        fetch(dataInfo.api, {
+                method: dataInfo.method,
+                headers: dataInfo.headers,
                 credentials: 'include',
                 body: params
             }
@@ -58,21 +58,21 @@ export default {
             let {data, success, err_code} = res
             if (success) {
                 console.log('Response: ', data)
-                defaultData.onSuccess(data)
+                dataInfo.onSuccess(data)
             } else {
                 if (err_code === -2) {
                     Toast.info('请先登录')
                     History.push('/Login')
-                } else if (err_code in defaultData.errCodes) {
+                } else if (err_code in dataInfo.errCodes) {
                     console.log(err_code)
                     let msg = '请求失败'
-                    msg = defaultData.errCodes[err_code]
+                    msg = dataInfo.errCodes[err_code]
                     console.log(msg)
                     Toast.info(msg);
                 }
             }
         }, (err:number) => {
-            defaultData.onErr(err)
+            dataInfo.onErr(err)
         })
     }
 }
