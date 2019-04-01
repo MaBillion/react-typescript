@@ -27,6 +27,9 @@ const MainContent = styled.main`
     box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
+    color: #333;
+    flex: 1;
+    background: #fff;
 `
 
 interface Props {
