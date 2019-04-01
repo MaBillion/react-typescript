@@ -115,11 +115,11 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://dev.skyreq.com:90",
+      "target": "http://beta.skyreq.com:81",
       "changeOrigin": true
     },
     "/file": {
-      "target": "http://dev.skyreq.com:90",
+      "target": "http://beta.skyreq.com:81",
       "changeOrigin": true
     }
   },

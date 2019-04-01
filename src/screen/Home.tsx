@@ -13,9 +13,10 @@ const MainContent = styled.main`
     flex: 1;
     display: flex;
     width: 100%;
+    flex-flow: wrap column;
 `
 
-const HomeContent = styled.main`
+const HomeContent = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
@@ -69,7 +70,7 @@ class Home extends BaseScreen<Props, State> {
         return (
             <Container new_msg_count={new_msg_count} title={'酷飞'} home={true} onHomeEvent={this.onPushMessageCenter}>
                 <HomeContent>
-                    <WingBlank style={{margin: 0, padding: 0}}>
+                    <WingBlank style={{margin: 0, padding: 0, width: '100%'}}>
                         <Carousel
                             autoplay={true}
                             infinite={true}
@@ -89,8 +90,10 @@ class Home extends BaseScreen<Props, State> {
                         </Carousel>
                     </WingBlank>
                     <MainContent>
-                        <Link style={{flex: 1, background: '#ff894b'}} to={'/PlanList'}>飞行计划</Link>
-                        <section style={{flex: 1, background: '#fff000'}} onClick={this.onLogOut}>退出登录</section>
+                        <Link style={{flex: 0.5, background: '#ff894b', textAlign: 'center'}} to={'/PlanList'}>飞行计划</Link>
+                        <section style={{flex: 0.5, background: '#fff000', textAlign: 'center'}} onClick={this.onLogOut}>退出登录</section>
+                        <section style={{flex: 0.5, background: '#00ff00', textAlign: 'center'}}>新闻</section>
+                        <section style={{flex: 0.5, background: '#227efb', textAlign: 'center'}}>商城</section>
                     </MainContent>
                 </HomeContent>
             </Container>
